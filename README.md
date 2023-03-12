@@ -4,12 +4,12 @@ Here we will co-operate and help each others in order to finish all required tas
 
 # Description & Tasks
 Create a package (namespace) called `sortlib` that contains the following sorting algorithms:
-- Insertion sort.
-- Selection sort.
-- Bubble sort.
-- Shell sort.
-- Count sort.
-- Merge sort.
-- Quick sort.
+- Insertion Sort :white_check_mark:
+- Selection Sort :white_check_mark:
+- Bubble Sort :white_check_mark:
+- Shell Sort.
+- Count Sort.
+- Merge Sort.
+- Quick Sort.
 
-All the above algorithms should be implemented by `C++` using **templates**.
+All the above algorithms are implemented in `C++` using **templates**.
