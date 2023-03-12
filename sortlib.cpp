@@ -56,6 +56,19 @@ namespace sortlib
         }
     }
 
+    // Bubble sort algorithm
+    template <typename T>
+    void bubbleSort(T data[], int arrSize)
+    {
+        // Traverse the whole array
+        for (int i = 0; i < arrSize; ++i)
+            for (int j = i + 1; j < arrSize; ++j)
+                // Check if the first one is greater than the second one
+                if (data[i] > data[j])
+                    // Swap the two elements
+                    swap(data[i], data[j]);
+    }
+
 }
 
 using namespace sortlib;
@@ -92,7 +105,10 @@ int main()
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 3:
-        cout << "Bubble Sort! Coming Soon...\n";
+        cout << "\t--- Bubble Sort ---\n";
+        cout << ">> Original Array <<\n"; printArr(arr, arraySize);
+        bubbleSort(arr, arraySize);
+        cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 4:
         cout << "Shell Sort! Coming Soon...\n";
