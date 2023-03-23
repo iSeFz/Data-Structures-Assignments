@@ -125,6 +125,7 @@ namespace sortlib
             data[k++] = rArr[j++];
         }
     }
+    // merge sort function
     template <typename T>
     void mergeSort(T data[], int start, int end){
         if(start >= end)
@@ -164,6 +165,7 @@ namespace sortlib
             }
         }
     }
+    // quick sort function
     template <typename T>
     void quickSort(T data[], int start, int end){
         if(start < end){
@@ -171,6 +173,43 @@ namespace sortlib
             int pivot = Partitioning(data,start,end);
             quickSort(data,start,pivot - 1); //recursively sort the left
             quickSort(data,pivot + 1,end); //recursively sort the right
+        }
+    }
+    // count sort function
+    template <typename T>
+    void countSort(T data[],int size){
+        //find the maximum and minimum value in the array
+        T max = data[0];
+        T min = data[0];
+        for(int i = 1; i < size; i++){
+            if(max < data[i])
+                max = data[i];
+            if(min > data[i])
+                min = data[i];
+        }
+        //calculate the range of the array
+        T range = max - min + 1;
+        T count[range];
+        T sorted[range];
+        //set all the elements of the count array to zero
+        for(int i = 0; i < range; i++){
+            count[i] = 0;
+        }
+        //count the number of elements in the data array
+        for(int i = 0; i < size; i++){
+            count[data[i] - min]++;
+        }
+        //accumulate the count array
+        for(int i = 1; i < range; i++){
+            count[i] = count[i - 1] + count[i];
+        }
+        //put the elements in the data array into the sorted array
+        for(int i = 0; i < size; i++){
+            sorted[--count[data[i] - min]] = data[i];
+        }
+        //copy the sorted array to the data array
+        for(int i = 0 ; i < size; i++){
+            data[i] = sorted[i];
         }
     }
 }
@@ -215,13 +254,16 @@ int main()
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 4:
-        cout << "Shell Sort! Coming Soon ---\n";
+        cout << "\t--- Shell Sort! Coming Soon ---\n";
         cout << ">> Original Array <<\n"; printArr(arr, arraySize);
         shellSort(arr, arraySize);
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 5:
         cout << "\t--- Counting Sort! Coming Soon ---\n";
+        cout << ">> Original Array <<\n"; printArr(arr, arraySize);
+        countSort(arr, arraySize);
+        cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 6:
         cout << "\t--- Merge Sort! Coming Soon ---\n";
