@@ -254,25 +254,25 @@ int main()
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 4:
-        cout << "\t--- Shell Sort! Coming Soon ---\n";
+        cout << "\t--- Shell Sort ---\n";
         cout << ">> Original Array <<\n"; printArr(arr, arraySize);
         shellSort(arr, arraySize);
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 5:
-        cout << "\t--- Counting Sort! Coming Soon ---\n";
+        cout << "\t--- Counting Sort ---\n";
         cout << ">> Original Array <<\n"; printArr(arr, arraySize);
         countSort(arr, arraySize);
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 6:
-        cout << "\t--- Merge Sort! Coming Soon ---\n";
+        cout << "\t--- Merge Sort ---\n";
         cout << ">> Original Array <<\n"; printArr(arr, arraySize);
         mergeSort(arr, 0, arraySize - 1);
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
         break;
     case 7:
-        cout << "\t--- Quick Sort! Coming Soon ---\n";
+        cout << "\t--- Quick Sort ---\n";
         cout << ">> Original Array <<\n"; printArr(arr, arraySize);
         quickSort(arr, 0, arraySize - 1);
         cout << ">> Sorted Array <<\n"; printArr(arr, arraySize);
