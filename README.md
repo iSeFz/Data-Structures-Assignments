@@ -8,12 +8,12 @@ Here we will cooperate and help each others in order to finish all required task
 **1. Implement the following linear data structures:**
 
 - Array-Based List
-- Single Linked List
+- Single Linked List :white_check_mark:
 - Doubly Linked List
 - Circular Linked List
 - Stack
-- Queue
+- Queue :white_check_mark:
 
 **2. Use these structures to solve a list of problems.**
 
-### All the structures are implemented in `C++` using `templates`
+### All the structures are implemented in `C++` using *templates*
