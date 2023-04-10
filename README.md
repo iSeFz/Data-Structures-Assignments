@@ -7,11 +7,11 @@ Here we will cooperate and help each others in order to finish all required task
 
 **1. Implement the following linear data structures:**
 
-- Array-Based List
+- Array-Based List :white_check_mark:
 - Single Linked List :white_check_mark:
 - Doubly Linked List
 - Circular Linked List
-- Stack
+- Stack :white_check_mark:
 - Queue :white_check_mark:
 
 **2. Use these structures to solve a list of problems.**
