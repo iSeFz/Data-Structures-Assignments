@@ -65,37 +65,3 @@ public:
         cout << "\n";
     }
 };
-
-// Driver function
-int main() {
-    Stack<int> myStack;
-
-    // Test push() function
-    myStack.push(10);
-    myStack.push(20);
-    myStack.push(30);
-    myStack.push(40);
-    myStack.push(50);
-
-    cout << "Initial stack elements: ";
-    myStack.print();
-
-    // Test pop() function
-    cout << "Popped element: " << myStack.pop() << "\n";
-
-    cout << "Current stack elements: ";
-    myStack.print();
-    
-    // Test top() function
-    cout << "Top element: " << myStack.top() << "\n";
-
-    // Test stackSize() function
-    cout << "Size of stack: " << myStack.stackSize() << "\n";
-
-    // Test clear() function
-    myStack.clear();
-    cout << "After clearing the stack:\n";
-    cout << "Size of stack: " << myStack.stackSize() << "\n";
-    myStack.print();
-    return 0;
-}

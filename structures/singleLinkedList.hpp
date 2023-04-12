@@ -51,8 +51,10 @@ public:
         newNode->data = element;
         if(isEmpty())
             head = tail = newNode;
-        else if(index == 1)
+        else if(index == 1){
             this->insertAtHead(element);
+            return;
+        }
         else{
             Node<elementType>* current = head;
             Node<elementType>* previous = nullptr;
@@ -105,11 +107,15 @@ public:
     void removeAt(int index){
         if(index <= 0 or index > length) return;
         // If the index is at the first node
-        else if(index == 1)
+        else if(index == 1){
             this->removeAtHead();
+            return;
+        }
         // If the index is at the last node
-        else if(index == length)
+        else if(index == length){
             this->removeAtTail();
+            return;
+        }
         else{
             Node<elementType>* current = head;
             Node<elementType>* previous = nullptr;
@@ -200,33 +206,3 @@ public:
         cout << "\n";
     }
 };
-
-// Driver function
-int main(){
-    SingleLinkedList<int> sll;
-    sll.insertAtHead(21);
-    sll.insertAtHead(11);
-    sll.insertAtTail(32);
-    sll.insertAtTail(44);
-    sll.insertAtTail(53);
-    cout << "List elements: "; sll.print();
-    cout << "Does 2 exist in the list? ";
-    sll.isExist(2) ? cout << "found\n" : cout << "nope\n";
-    cout << "Element at index 3 is " << sll.retrieveAt(3) << "\n";
-    cout << "Is 3 at index 4? ";
-    sll.isItemAtEqual(44, 4) ? cout << "yes\n" : cout << "nope\n";
-    sll.insertAt(25, 3);
-    cout << "After inserting 25 at position 3:\n";
-    sll.print();
-    sll.replaceAt(100, 5);
-    cout << "After replacing 100 at position 5:\n";
-    sll.print();
-    sll.removeAt(2);
-    cout << "After removing element at position 2:\n";
-    sll.print();
-    cout << "List size is " << sll.linkedListSize() << "\n";
-    cout << "Clearing the list...\n";
-    sll.clear();
-    cout << "List size is " << sll.linkedListSize() << "\n";
-    return 0;
-}

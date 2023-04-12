@@ -90,27 +90,3 @@ public:
         cout << "\n";
     }
 };
-
-// Driver function
-int main() {
-    Queue<int> q;
-    q.enqueue(5);
-    q.enqueue(10);
-    q.enqueue(15);
-    q.enqueue(20);
-    cout << "Queue Elements: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "First element: " << q.first() << endl;
-    q.dequeue();
-    cout << "After dequeue: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "First element: " << q.first() << endl;
-    q.enqueue(25);
-    cout << "After enqueue: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "Clearing Queue....\n";
-    q.clear();
-    q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    return 0;
-}

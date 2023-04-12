@@ -39,9 +39,8 @@ public:
         }
     }
 
-
     // This function inserts an element at a given index in the array
-    void insetAt(T element, int index){
+    void insertAt(T element, int index){
 
         // Check if the array is not full
         if(!isFull()) {
@@ -64,10 +63,7 @@ public:
     }
 
     // This function retrieve an element at a given index in the array
-    T retrieveAt(int index){
-        return data[index];
-    }
-
+    T retrieveAt(int index){ return data[index]; }
 
     // This function removes an element from the array at the specified index
     void removeAt (int index){
@@ -90,7 +86,6 @@ public:
         }
     }
 
-    
     // This function replaces an element in the array at the specified index with a new element
     void replaceAt (T newElement, int index){
 
@@ -106,7 +101,6 @@ public:
             cerr << "Index is invalid";
         }
     }
-
 
     // This function checks if the element at the specified index is equal to the given element
     bool isItemAtEqual (T element, int index){
@@ -125,29 +119,21 @@ public:
         }
     }
 
-
     // This function checks if array empty or not
-    bool isEmpty(){
-        return (listSize() == 0);
-    }
+    bool isEmpty(){ return (listSize() == 0); }
+
     // This function checks if array full or not
-    bool isFull(){
-        return (listSize() == maxListSize());
-    }
-    
+    bool isFull(){ return (listSize() == maxListSize()); }
+
     // This function returns number of elements in array
-    int listSize(){
-        return length;
-    }
+    int listSize(){ return length; }
 
     // This function returns max capacity of array
-    int maxListSize(){
-        return size;
-    }
+    int maxListSize(){ return size; }
+
     // This function clear array
-    void clear(){
-        length = 0;
-    }
+    void clear(){ length = 0; }
+
     // This function prints array
     void print(){
         if(isEmpty()){
@@ -161,54 +147,3 @@ public:
         cout << data[length - 1] << "]";
     }
 };
-
-
-int main() {
-
-    // Create an array of integers with a size of 5
-    Array<int> arr(5);
-
-    // Insert some elements into the array
-    arr.insert(10);
-    arr.insert(20);
-    arr.insert(30);
-
-    // Print the array
-    cout << "Array after insertions: ";
-    arr.print();
-    cout << endl;
-
-    // Retrieve an element from the array
-    int elem = arr.retrieveAt(1);
-    cout << "Element retrieved from index 1: " << elem << endl;
-
-    // Replace an element in the array
-    arr.replaceAt(25, 1);
-    cout << "Array after replacing element at index 1: ";
-    arr.print();
-    cout << endl;
-
-    // Check if an element in the array is equal to a given element
-    bool isEqual = arr.isItemAtEqual(25, 1);
-    cout << "Is element at index 1 equal to 25? " << isEqual << endl;
-
-    // Insert an element at a specific index in the array
-    arr.insetAt(15, 1);
-    cout << "Array after inserting element 15 at index 1: ";
-    arr.print();
-    cout << endl;
-
-    // Remove an element from the array
-    arr.removeAt(2);
-    cout << "Array after removing element at index 2: ";
-    arr.print();
-    cout << endl;
-
-    // Clear the array
-    arr.clear();
-    cout << "Array after clearing: ";
-    arr.print();
-    cout << endl;
-
-    return 0;
-}
