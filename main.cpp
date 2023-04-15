@@ -2,6 +2,7 @@
 #include "structures/singleLinkedList.hpp"
 #include "structures/stack.hpp"
 #include "structures/queue.hpp"
+#include "structures/circularLinkedList.hpp"
 
 // Test the implementation of Array-based List data structure
 void testArray(){
@@ -78,6 +79,38 @@ void testSLL(){
     cout << "Clearing the list...\n";
     sll.clear();
     cout << "List size is " << sll.linkedListSize() << "\n";
+}
+
+// Test the implementation of Circular Linked List data structure
+void testCLL(){
+    CircularLinkedList<int> sll;
+    sll.insertAtHead(21);
+    sll.insertAtHead(11);
+    sll.insertAtTail(32);
+    sll.insertAtTail(44);
+    sll.insertAtTail(53);
+    cout << "List elements: "; sll.print();
+    cout << "Does 2 exist in the list? ";
+    sll.isExist(2) ? cout << "found\n" : cout << "nope\n";
+    cout << "Element at index 3 is " << sll.retrieveAt(3) << "\n";
+    cout << "Is 44 at index 4? ";
+    sll.isItemAtEqual(44, 4) ? cout << "yes\n" : cout << "nope\n";
+    sll.insertAt(25, 3);
+    cout << "After inserting 25 at position 3:\n";
+    sll.print();
+    sll.replaceAt(100, 4);
+    cout << "After replacing 100 at position 4:\n";
+    sll.print();
+    sll.swap(1, 4);
+    cout << "After swapping elements at positions 1 and 4:\n";
+    sll.print();
+    sll.removeAt(2);
+    cout << "After removing element at position 2:\n";
+    sll.print();
+    cout << "List size is " << sll.circularLinkedListSize() << "\n";
+    cout << "Clearing the list...\n";
+    sll.clear();
+    cout << "List size is " << sll.circularLinkedListSize() << "\n";
 }
 
 // Test the implementation of Stack data structure
@@ -162,7 +195,7 @@ int main(){
             break;
         case 4:
             cout << "\tCircular Linked List Coming Soon!!\n";
-            // testCLL();
+            testCLL();
             break;
         case 5:
             cout << "\tTesting the Stack\n";
