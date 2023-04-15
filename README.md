@@ -10,7 +10,7 @@ Here we will cooperate and help each others in order to finish all required task
 - Array-Based List :white_check_mark:
 - Single Linked List :white_check_mark:
 - Doubly Linked List
-- Circular Linked List
+- Circular Linked List :white_check_mark:
 - Stack :white_check_mark:
 - Queue :white_check_mark:
 
