@@ -1,16 +1,17 @@
 #include <iostream>
 using namespace std;
 
+// Node structure
+template <typename T>
+struct Node{
+    T data;
+    Node *next;
+};
+
 // Single Linked List Implementation
 template <class elementType>
 class SingleLinkedList{
 private:
-    // Node structure
-    template <typename T = elementType>
-    struct Node{
-        T data;
-        Node *next;
-    };
     // Track the number of elements in the list
     int length;
     // Head and tail pointers
@@ -205,4 +206,10 @@ public:
         }
         cout << "\n";
     }
+
+    // get head
+    Node<elementType>* getHead() const { return head; }
+
+    // get tail
+    Node<elementType>* getTail() const { return tail; }
 };
