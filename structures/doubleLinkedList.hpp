@@ -302,6 +302,10 @@ void doubleLinkedList<T>::clear() {
 
 template<typename T>
 void doubleLinkedList<T>::forwardTraversal() {
+    if (size == 0){
+        std::cerr << "Empty List!\n";
+        return;
+    }
     Node<T> *currNode = head;
     while (currNode!= nullptr){
         std::cout << currNode->info << " ";
@@ -311,6 +315,10 @@ void doubleLinkedList<T>::forwardTraversal() {
 
 template<typename T>
 void doubleLinkedList<T>::backwardTraversal() {
+    if (size == 0){
+        std::cerr << "Empty List!\n";
+        return;
+    }
     Node<T> *currNode = tail;
     while (currNode!=nullptr){
         std::cout << currNode->info << " ";
