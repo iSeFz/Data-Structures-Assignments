@@ -17,8 +17,6 @@ std::string infixToPostfix(std::string& infixExp){
     for (int i = 0; i < size; ++i) {
         // if char is operator
         if (precedence.count(infixExp[i])){
-            // removing operators from stack if they have higher precedence than current operator and adding them to
-            // postfix exp
 
             if (infixExp[i]=='('){
                 operatorStk.push(infixExp[i]);
@@ -35,6 +33,8 @@ std::string infixToPostfix(std::string& infixExp){
                 continue;
             }
 
+            // removing operators from stack if they have higher precedence than current operator and adding them to
+            // postfix exp
             while(!operatorStk.isEmpty() && precedence[operatorStk.top()] <= precedence[infixExp[i]]){
                 postfixExp+=operatorStk.pop();
                 postfixExp+=' ';
