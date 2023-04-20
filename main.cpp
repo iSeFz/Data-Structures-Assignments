@@ -1,8 +1,11 @@
 #include "structures/array.hpp"
 #include "structures/singleLinkedList.hpp"
 #include "structures/stack.hpp"
+#include "structures/stackArr.hpp"
+
 #include "structures/queue.hpp"
 #include "structures/circularLinkedList.hpp"
+#include "structures/doubleLinkedList.hpp"
 
 // Test the implementation of Array-based List data structure
 void testArray(){
@@ -168,7 +171,100 @@ void testQueue(){
     q.print();
     cout << "Queue size: " << q.queueSize() << endl;
 }
+void testDLL(){
+    doubleLinkedList<int> DLL;
+    cout << "Is DLL empty\n";
+    cout << (DLL.isEmpty()?"YES":"NO") << '\n';
 
+    DLL.insertAtHead(20);
+    DLL.insertAtHead(7);
+    DLL.insertAtHead(9);
+    DLL.insertAtHead(30);
+    DLL.insertAtHead(43);
+    DLL.insertAtHead(5);
+    DLL.insertAtTail(10);
+    DLL.insertAtHead(50);
+
+    cout << "DLL contents: ";
+    DLL.forwardTraversal();
+
+    cout << "\nInserting 65 at index 2\n";
+    DLL.insertAt(65, 2);
+    DLL.forwardTraversal();
+
+    cout << "\nRemove from head\n";
+    DLL.removeAtHead();
+    DLL.forwardTraversal();
+
+
+    cout << "\nRemove from tail\n";
+    DLL.removeAtTail();
+    DLL.forwardTraversal();
+
+
+    cout << "\nRemove from index 3\n";
+    DLL.removeAt(3);
+    DLL.forwardTraversal();
+
+
+    cout << "\nGet element at index 2\n";
+    DLL.forwardTraversal();
+    cout << "\nElement: " << DLL.retrieveAt(2) << '\n';
+
+    cout << "\nReplace element at index 4 with 124\n";
+    DLL.replaceAt(124, 4);
+    DLL.forwardTraversal();
+
+
+    cout << "\nDoes 182 exist?\n";
+    DLL.forwardTraversal();
+    cout << '\n' << (DLL.isExist(182)?"YES":"NO") << '\n';
+
+    cout << "\nIs item at index 5 equal to 42?\n";
+    DLL.forwardTraversal();
+    cout << '\n' << (DLL.isItemAtEqual(42, 5)?"YES":"NO") << '\n';
+
+
+    cout << "\nSize of DLL is:\n";
+    DLL.forwardTraversal();
+    cout << '\n' << DLL.doubleLinkedListSize();
+
+//    cout << "\nReverse DLL\n";
+//    DLL.reverse();
+//    cout << '\n';
+//    DLL.forwardTraversal();
+
+
+    cout << "\nForward Traversal\n";
+    DLL.forwardTraversal();
+
+    cout << "\nBackward Traversal\n";
+    DLL.backwardTraversal();
+
+    cout << "\nClear DLL\n";
+    DLL.clear();
+    DLL.forwardTraversal();
+}
+//
+//void testStackArr(){
+//    StackArr<int> stk;
+//    cout << "\nIs stack empty?\n";
+//    cout << (stk.isEmpty()?"YES":"NO");
+//    cout << "\n";
+//    stk.push(10);
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//    cout << "\n\n";
+//}
 int main(){
     cout << "Which structure do you want to test?\n";
     cout << "1. Array-based List\n"
@@ -191,7 +287,7 @@ int main(){
             break;
         case 3:
             cout << "\tDoubly Linked List! Coming Soon!!\n";
-            // testDLL();
+            testDLL();
             break;
         case 4:
             cout << "\tCircular Linked List Coming Soon!!\n";
@@ -204,6 +300,10 @@ int main(){
         case 6:
             cout << "\tTesting the Queue\n";
             testQueue();
+            break;
+        case 7:
+            cout << "\tTesting the Stack - Array Implementation\n";
+            testStackArr();
             break;
         default:
             cerr << "Invalid Choice!\n";

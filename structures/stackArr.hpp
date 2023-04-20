@@ -13,6 +13,8 @@ public:
     void push(T elem);
     T pop();
     T top() const;
+
+
     bool isEmpty() const;
     int stackSize() const;
     void clear();
@@ -28,7 +30,7 @@ StackArr<T>::StackArr() {
 
 template<typename T>
 StackArr<T>::~StackArr() {
-    clear();
+    delete[] data;
 }
 
 template<typename T>
@@ -37,7 +39,7 @@ void StackArr<T>::push(T elem) {
     if (size+1>=arrSize){
         arrSize = 1.5*arrSize;
 
-        T* newData = new T[arrSize];
+        T *newData = new T[arrSize];
         for (int i = 0; i < size; ++i) {
             newData = data[i];
         }

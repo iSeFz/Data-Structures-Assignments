@@ -50,6 +50,7 @@ void doubleLinkedList<T>::insertAtHead(T elem) {
     } else {
         // else list not empty
         newNode->next = head;
+        head->prev = newNode;
         newNode->prev = nullptr;
         head = newNode;
     }
@@ -139,6 +140,7 @@ template<typename T>
 void doubleLinkedList<T>::removeAtHead() {
     Node<T> *tmp = head;
     head = head->next;
+    head->prev = nullptr;
     delete tmp;
     size--;
 }
@@ -147,6 +149,7 @@ template<typename T>
 void doubleLinkedList<T>::removeAtTail() {
     Node<T> *tmp = tail;
     tail = tail->prev;
+    tail->next = nullptr;
     delete tmp;
     size--;
 }
@@ -266,7 +269,7 @@ void doubleLinkedList<T>::swap(int firstItemIndex, int secondItemIndex) {
     firstNode->prev = tmpNode.prev;
 }
 
-
+// TO REVIEW - ERROR
 template<typename T>
 void doubleLinkedList<T>::reverse() {
     Node<T> *tmp, *currNode = head;
@@ -274,6 +277,7 @@ void doubleLinkedList<T>::reverse() {
         tmp = currNode->next;
         currNode->next = currNode->prev;
         currNode->prev = tmp;
+
     }
     tmp = head;
     head = tail;
@@ -293,11 +297,13 @@ int doubleLinkedList<T>::doubleLinkedListSize() const {
 template<typename T>
 void doubleLinkedList<T>::clear() {
     Node<T> *tmp;
-    while (size--){
+    while (head != nullptr){
         tmp = head;
         head = head->next;
         delete tmp;
     }
+    tail = nullptr;
+    size = 0;
 }
 
 template<typename T>
