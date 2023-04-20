@@ -245,26 +245,40 @@ void testDLL(){
     DLL.clear();
     DLL.forwardTraversal();
 }
-//
-//void testStackArr(){
-//    StackArr<int> stk;
-//    cout << "\nIs stack empty?\n";
-//    cout << (stk.isEmpty()?"YES":"NO");
-//    cout << "\n";
-//    stk.push(10);
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//    cout << "\n\n";
-//}
+
+void testStackArr(){
+    StackArr<int> stk;
+
+    cout << "\nIs stack empty?\n";
+    cout << (stk.isEmpty()?"YES":"NO");
+
+    cout << "\nPushing 6 3 10 72 4 into the stack\n";
+    stk.push(6);
+    stk.push(3);
+    stk.push(10);
+    stk.push(72);
+    stk.push(4);
+
+    cout << "\nCurrent stack size:\n";
+    cout << stk.stackSize();
+
+    cout << "\nStack contents:\n";
+    stk.print();
+
+    cout << "\npopping " << stk.pop() << " and " << stk.pop() << " from the stack\n";
+
+    cout << "\nStack contents:\n";
+    stk.print();
+
+    cout << "\nTop element in stack\n";
+    cout << stk.top();
+
+    cout << "\nClear stack contents\n";
+    stk.clear();
+
+    cout << "\nStack contents:\n";
+    stk.print();
+}
 int main(){
     cout << "Which structure do you want to test?\n";
     cout << "1. Array-based List\n"
@@ -272,7 +286,8 @@ int main(){
             "3. Doubly Linked List\n"
             "4. Circular Linked List\n"
             "5. Stack\n"
-            "6. Queue\n";
+            "6. Queue\n"
+            "7. Stack (Array)\n";
     cout << "Your choice ==> ";
     short choice;
     cin >> choice;

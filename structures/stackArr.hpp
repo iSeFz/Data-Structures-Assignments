@@ -13,8 +13,6 @@ public:
     void push(T elem);
     T pop();
     T top() const;
-
-
     bool isEmpty() const;
     int stackSize() const;
     void clear();
@@ -41,11 +39,10 @@ void StackArr<T>::push(T elem) {
 
         T *newData = new T[arrSize];
         for (int i = 0; i < size; ++i) {
-            newData = data[i];
+            newData[i] = data[i];
         }
 
-        T *tmp = data;
-        delete tmp;
+        delete[] data;
         data = newData;
     }
     data[size++] = elem;
@@ -78,6 +75,10 @@ void StackArr<T>::clear() {
 
 template<typename T>
 void StackArr<T>::print() const {
+    if (size==0){
+        cerr << "Stack is empty!\n";
+        return;
+    }
     for (int i = 0; i < size; ++i) {
         std::cout << data[i] << " ";
     }
