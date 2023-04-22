@@ -19,9 +19,9 @@ Here we will cooperate and help each others in order to finish all required task
 1. Combine Nodes Between Zeros :white_check_mark:
 2. Merge K Sorted Linked Lists
 3. Convert the Infix Expression to Postfix Expression
-4. Longest Valid Parentheses
+4. Longest Valid Parentheses :white_check_mark:
 5. Generate Binary Numbers from 1 to N :white_check_mark:
-6. Implement a Stack using Queue
+6. Implement a Stack using Queue :white_check_mark:
 7. Sorting a Queue :white_check_mark:
 
 ### All structures & problems are implemented in `C++` using *templates*
