@@ -291,6 +291,14 @@ void doubleLinkedList<T>::swap(int firstItemIndex, int secondItemIndex) {
 
 template<typename T>
 void doubleLinkedList<T>::reverse() {
+    if (size==0){
+        std::cerr << "Empty list!\n";
+        return;
+    }
+    if (size==1){
+        return;
+    }
+
     Node<T> *tmp, *currNode = head;
     while (currNode != nullptr){
         tmp = currNode->next;

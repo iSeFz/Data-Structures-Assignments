@@ -246,7 +246,6 @@ void testDLL(){
 
     cout << "\nClear DLL\n";
     DLL.clear();
-    DLL.forwardTraversal();
 }
 
 void testStackArr(){
