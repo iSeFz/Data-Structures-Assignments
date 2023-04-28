@@ -229,60 +229,66 @@ bool doubleLinkedList<T>::isItemAtEqual(T otherElem, int index) const {
     return otherElem == currNode->info;
 }
 
-// TO DO
 template<typename T>
 void doubleLinkedList<T>::swap(int firstItemIndex, int secondItemIndex) {
     if (firstItemIndex == secondItemIndex){
-        cerr << "Indices are the same\n";
+        std::cerr << "Indices are the same\n";
         return;
     }
-
-    // ensuring that firstItemIndex<=secondItemIndex
     if (firstItemIndex>secondItemIndex){
         int tmp = firstItemIndex;
         firstItemIndex = secondItemIndex;
         secondItemIndex = tmp;
     }
     int count = 0;
-    Node<T> *firstNode = head;
+    Node<T> *firstNode = head, *secondNode;
     while (count < firstItemIndex){
         firstNode = firstNode->next;
         count++;
     }
-    // firstNode now holds the node at firstItemIndex
-    Node<T> *secondNode = firstNode;
+    secondNode = firstNode;
     while (count < secondItemIndex){
         secondNode = secondNode->next;
         count++;
     }
-    // secondNode now holds the node at secondItemIndex
+    // firstNode and secondNode now points at the nodes corresponding
+    // to firstItemIndex and secondItemIndex respectively
 
-    // swapping firstNode and secondNode prev and next links
-    Node<T> tmpNode = firstNode;
-    firstNode->next = secondNode->next;
-    firstNode->prev = secondNode->prev;
+    if (firstNode!=head && secondNode!=tail){
+        firstNode->prev->next = secondNode;
+        firstNode->next->prev = secondNode;
 
-    secondNode->next = tmpNode->next;
-    secondNode->prev = tmpNode->prev;
+        secondNode->prev->next = firstNode;
+        secondNode->next->prev = firstNode;
 
-    if (firstNode==head && secondNode==tail){
-        Node<T> *tmpPtr = head;
-        head = tail;
-        tail = tmpPtr;
     } else if (firstNode==head && secondNode!=tail){
+        secondNode->prev->next = firstNode;
+        secondNode->next->prev = firstNode;
+
+        firstNode->next->prev = secondNode;
         head = secondNode;
+
     } else if (firstNode!=head && secondNode==tail){
+        firstNode->prev->next = secondNode;
+        firstNode->next->prev = secondNode;
+
+        secondNode->prev->next = firstNode;
         tail = firstNode;
-    } else if (firstNode!=head && firstNode!=tail) {
-
-
+    } else if (firstNode==head && secondNode==tail){
+        firstNode->next->prev = secondNode;
+        secondNode->prev->next = firstNode;
+        head = secondNode;
+        tail = firstNode;
     }
 
-
-
+    // swapping next and prev links of the nodes
+    Node<T> tmp = *firstNode;
+    firstNode->next = secondNode->next;
+    firstNode->prev = secondNode->prev;
+    secondNode->next = tmp.next;
+    secondNode->prev = tmp.prev;
 }
 
-// TO TEST
 template<typename T>
 void doubleLinkedList<T>::reverse() {
     Node<T> *tmp, *currNode = head;
@@ -290,7 +296,7 @@ void doubleLinkedList<T>::reverse() {
         tmp = currNode->next;
         currNode->next = currNode->prev;
         currNode->prev = tmp;
-        currNode = currNode->next;
+        currNode = currNode->prev;
     }
     tmp = head;
     head = tail;

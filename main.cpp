@@ -229,10 +229,13 @@ void testDLL(){
     DLL.forwardTraversal();
     cout << '\n' << DLL.doubleLinkedListSize();
 
-//    cout << "\nReverse DLL\n";
-//    DLL.reverse();
-//    cout << '\n';
-//    DLL.forwardTraversal();
+    cout << "\nReverse DLL\n";
+    DLL.reverse();
+    cout << '\n';
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 3 and 5\n";
+    DLL.swap(3, 5);
 
 
     cout << "\nForward Traversal\n";
