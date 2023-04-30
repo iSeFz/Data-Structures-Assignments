@@ -91,8 +91,6 @@ int main(){
     cout << "\nTop element in the stack is:\n";
     cout << stkQ.top() << '\n';
 
-    cout << "\nClear stack contents\n";
-    stkQ.clear();
 
     cout << "\nIs stack empty?\n";
     cout << (stkQ.isEmpty()?"YES":"NO") << '\n';
