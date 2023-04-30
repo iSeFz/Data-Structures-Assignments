@@ -254,6 +254,25 @@ void doubleLinkedList<T>::swap(int firstItemIndex, int secondItemIndex) {
     // firstNode and secondNode now points at the nodes corresponding
     // to firstItemIndex and secondItemIndex respectively
 
+    // if firstNode and secondNode are adjacent
+    if (firstItemIndex + 1 == secondItemIndex){
+        if (firstNode == head){
+            secondNode->next->prev = firstNode;
+            head = secondNode;
+        } else if (secondNode == tail){
+            firstNode->prev->next = secondNode;
+            tail = firstNode;
+        } else {
+            firstNode->prev->next = secondNode;
+            secondNode->next->prev = firstNode;
+        }
+        firstNode->next = secondNode->next;
+        secondNode->next = firstNode;
+        secondNode->prev = firstNode->prev;
+        firstNode->prev = secondNode;
+        return;
+    }
+
     if (firstNode!=head && secondNode!=tail){
         firstNode->prev->next = secondNode;
         firstNode->next->prev = secondNode;
