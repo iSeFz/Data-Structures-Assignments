@@ -20,8 +20,10 @@ private:
 public:
     // Constructor
     SingleLinkedList() : head(nullptr), tail(nullptr), length(0) {}
-    // Destructor
-    ~SingleLinkedList(){ this->clear(); }
+    // Getter function to get the head of the list
+    Node<elementType>* getHead() const { return head; }
+    // Getter function to get the tail of the list
+    Node<elementType>* getTail() const { return tail; }
     // Insert node at the beginning of the list
     void insertAtHead(elementType element){
         Node<elementType>* newNode = new Node<elementType>();
@@ -131,7 +133,7 @@ public:
         length--;
     }
     // Retrieve certain element by position
-    elementType retrieveAt(int index){
+    elementType retrieveAt(int index) const {
         if(index <= 0 or index > length) exit(0);
         // If the index is at the first node
         else if(index == 1)
@@ -165,7 +167,7 @@ public:
         }
     }
     // Check if the item exists in the list
-    bool isExist(elementType element){
+    bool isExist(elementType element) const {
         Node<elementType>* temp = head;
         // Loop until reaching the end of the list
         while(temp != nullptr){
@@ -176,12 +178,51 @@ public:
         return false;
     }
     // Check if certain element is at certain position
-    bool isItemAtEqual(elementType element, int index){
+    bool isItemAtEqual(elementType element, int index) const {
         if(index <= 0 or index > length) return false;
         return retrieveAt(index) == element;
     }
-    // TODO: Swap two nodes without swapping data
-    // void swap(int firstItemIdx, int secondItemIdx){}
+    // Swap two nodes without swapping data
+    void swap(int firstItemIdx, int secondItemIdx){
+        // If the list is empty
+        if(isEmpty()) return;
+        // If two indices are the same
+        if (firstItemIdx == secondItemIdx) return;
+        // Check if the indices are invalid
+        if(firstItemIdx < 0 || firstItemIdx > length) return;
+        if(secondItemIdx < 0 || secondItemIdx > length) return;
+        // Define nodes used in iteration
+        Node<elementType> *firstPrev = nullptr, *secondPrev = nullptr, *firstNode = head, *secondNode = head;
+        int count = 0;
+        // Store the first node in firstNode
+        while(count < firstItemIdx){
+            firstPrev = firstNode;
+            firstNode = firstNode->next;
+            count++;
+        }
+        count = 0;
+        // Store the second node in secondNode
+        while(count < secondItemIdx){
+            secondPrev = secondNode;
+            secondNode = secondNode->next;
+            count++;
+        }
+        // Check if firstNode is not head of the list
+        if(firstPrev != nullptr)
+            firstPrev->next = secondNode;
+        else
+            head = secondNode;
+        // Check if secondNode is not head of the list
+        if(secondPrev != nullptr)
+            secondPrev->next = firstNode;
+        else
+            head = firstNode;
+        // Swap actual nodes after knowing their position
+        Node<elementType>* temp;
+        temp = secondNode->next;
+        secondNode->next = firstNode->next;
+        firstNode->next = temp;
+    }
     // Check if the list is empty
     bool isEmpty() const { return length == 0; }
     // Get the size of the linked list
@@ -206,10 +247,4 @@ public:
         }
         cout << "\n";
     }
-
-    // get head
-    Node<elementType>* getHead() const { return head; }
-
-    // get tail
-    Node<elementType>* getTail() const { return tail; }
 };
