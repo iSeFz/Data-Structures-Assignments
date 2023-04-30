@@ -1,11 +1,11 @@
+// Including structures library files
 #include "structures/array.hpp"
 #include "structures/singleLinkedList.hpp"
+#include "structures/doubleLinkedList.hpp"
+#include "structures/circularLinkedList.hpp"
 #include "structures/stack.hpp"
 #include "structures/stackArr.hpp"
-
 #include "structures/queue.hpp"
-#include "structures/circularLinkedList.hpp"
-#include "structures/doubleLinkedList.hpp"
 
 // Test the implementation of Array-based List data structure
 void testArray(){
@@ -55,7 +55,7 @@ void testArray(){
     cout << endl;
 }
 
-// Test the implementation of Linked List data structure
+// Test the implementation of Single Linked List data structure
 void testSLL(){
     SingleLinkedList<int> sll;
     sll.insertAtHead(21);
@@ -75,6 +75,9 @@ void testSLL(){
     sll.replaceAt(100, 5);
     cout << "After replacing 100 at position 5:\n";
     sll.print();
+    sll.swap(0, 3);
+    cout << "After swapping elements at positions 0 and 3:\n";
+    sll.print();
     sll.removeAt(2);
     cout << "After removing element at position 2:\n";
     sll.print();
@@ -84,93 +87,7 @@ void testSLL(){
     cout << "List size is " << sll.linkedListSize() << "\n";
 }
 
-// Test the implementation of Circular Linked List data structure
-void testCLL(){
-    CircularLinkedList<int> sll;
-    sll.insertAtHead(21);
-    sll.insertAtHead(11);
-    sll.insertAtTail(32);
-    sll.insertAtTail(44);
-    sll.insertAtTail(53);
-    cout << "List elements: "; sll.print();
-    cout << "Does 2 exist in the list? ";
-    sll.isExist(2) ? cout << "found\n" : cout << "nope\n";
-    cout << "Element at index 3 is " << sll.retrieveAt(3) << "\n";
-    cout << "Is 44 at index 4? ";
-    sll.isItemAtEqual(44, 4) ? cout << "yes\n" : cout << "nope\n";
-    sll.insertAt(25, 3);
-    cout << "After inserting 25 at position 3:\n";
-    sll.print();
-    sll.replaceAt(100, 4);
-    cout << "After replacing 100 at position 4:\n";
-    sll.print();
-    sll.swap(1, 4);
-    cout << "After swapping elements at positions 1 and 4:\n";
-    sll.print();
-    sll.removeAt(2);
-    cout << "After removing element at position 2:\n";
-    sll.print();
-    cout << "List size is " << sll.circularLinkedListSize() << "\n";
-    cout << "Clearing the list...\n";
-    sll.clear();
-    cout << "List size is " << sll.circularLinkedListSize() << "\n";
-}
-
-// Test the implementation of Stack data structure
-void testStack(){
-    Stack<int> myStack;
-
-    // Test push() function
-    myStack.push(10);
-    myStack.push(20);
-    myStack.push(30);
-    myStack.push(40);
-    myStack.push(50);
-
-    cout << "Initial stack elements: ";
-    myStack.print();
-
-    // Test pop() function
-    cout << "Popped element: " << myStack.pop() << "\n";
-
-    cout << "Current stack elements: ";
-    myStack.print();
-    
-    // Test top() function
-    cout << "Top element: " << myStack.top() << "\n";
-
-    // Test stackSize() function
-    cout << "Size of stack: " << myStack.stackSize() << "\n";
-
-    // Test clear() function
-    myStack.clear();
-    cout << "After clearing the stack:\n";
-    cout << "Size of stack: " << myStack.stackSize() << "\n";
-    myStack.print();
-}
-
-// Test the implementation of Queue data structure
-void testQueue(){
-    Queue<int> q;
-    q.enqueue(5);
-    q.enqueue(10);
-    q.enqueue(15);
-    q.enqueue(20);
-    cout << "Queue Elements: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "First element: " << q.first() << endl;
-    q.dequeue();
-    cout << "After dequeue: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "First element: " << q.first() << endl;
-    q.enqueue(25);
-    cout << "After enqueue: "; q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-    cout << "Clearing Queue....\n";
-    q.clear();
-    q.print();
-    cout << "Queue size: " << q.queueSize() << endl;
-}
+// Test the implementation of Doubly Linked List data structure
 void testDLL(){
     doubleLinkedList<int> DLL;
     cout << "Is DLL empty\n";
@@ -248,6 +165,72 @@ void testDLL(){
     DLL.clear();
 }
 
+// Test the implementation of Circular Linked List data structure
+void testCLL(){
+    CircularLinkedList<int> sll;
+    sll.insertAtHead(21);
+    sll.insertAtHead(11);
+    sll.insertAtTail(32);
+    sll.insertAtTail(44);
+    sll.insertAtTail(53);
+    cout << "List elements: "; sll.print();
+    cout << "Does 2 exist in the list? ";
+    sll.isExist(2) ? cout << "found\n" : cout << "nope\n";
+    cout << "Element at index 3 is " << sll.retrieveAt(3) << "\n";
+    cout << "Is 44 at index 4? ";
+    sll.isItemAtEqual(44, 4) ? cout << "yes\n" : cout << "nope\n";
+    sll.insertAt(25, 3);
+    cout << "After inserting 25 at position 3:\n";
+    sll.print();
+    sll.replaceAt(100, 4);
+    cout << "After replacing 100 at position 4:\n";
+    sll.print();
+    sll.swap(1, 4);
+    cout << "After swapping elements at positions 1 and 4:\n";
+    sll.print();
+    sll.removeAt(2);
+    cout << "After removing element at position 2:\n";
+    sll.print();
+    cout << "List size is " << sll.circularLinkedListSize() << "\n";
+    cout << "Clearing the list...\n";
+    sll.clear();
+    cout << "List size is " << sll.circularLinkedListSize() << "\n";
+}
+
+// Test the implementation of Stack data structure using Linked List
+void testStack(){
+    Stack<int> myStack;
+
+    // Test push() function
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+    myStack.push(40);
+    myStack.push(50);
+
+    cout << "Initial stack elements: ";
+    myStack.print();
+
+    // Test pop() function
+    cout << "Popped element: " << myStack.pop() << "\n";
+
+    cout << "Current stack elements: ";
+    myStack.print();
+    
+    // Test top() function
+    cout << "Top element: " << myStack.top() << "\n";
+
+    // Test stackSize() function
+    cout << "Size of stack: " << myStack.stackSize() << "\n";
+
+    // Test clear() function
+    myStack.clear();
+    cout << "After clearing the stack:\n";
+    cout << "Size of stack: " << myStack.stackSize() << "\n";
+    myStack.print();
+}
+
+// Test the implementation of Stack data structure using Array-based List
 void testStackArr(){
     StackArr<int> stk;
 
@@ -281,15 +264,40 @@ void testStackArr(){
     cout << "\nStack contents:\n";
     stk.print();
 }
+
+// Test the implementation of Queue data structure
+void testQueue(){
+    Queue<int> q;
+    q.enqueue(5);
+    q.enqueue(10);
+    q.enqueue(15);
+    q.enqueue(20);
+    cout << "Queue Elements: "; q.print();
+    cout << "Queue size: " << q.queueSize() << endl;
+    cout << "First element: " << q.first() << endl;
+    q.dequeue();
+    cout << "After dequeue: "; q.print();
+    cout << "Queue size: " << q.queueSize() << endl;
+    cout << "First element: " << q.first() << endl;
+    q.enqueue(25);
+    cout << "After enqueue: "; q.print();
+    cout << "Queue size: " << q.queueSize() << endl;
+    cout << "Clearing Queue....\n";
+    q.clear();
+    q.print();
+    cout << "Queue size: " << q.queueSize() << endl;
+}
+
+// Driver function to test the above functions
 int main(){
     cout << "Which structure do you want to test?\n";
     cout << "1. Array-based List\n"
             "2. Single Linked List\n"
             "3. Doubly Linked List\n"
             "4. Circular Linked List\n"
-            "5. Stack\n"
-            "6. Queue\n"
-            "7. Stack (Array)\n";
+            "5. Stack (Linked List)\n"
+            "6. Stack (Array)\n"
+            "7. Queue\n";
     cout << "Your choice ==> ";
     short choice;
     cin >> choice;
@@ -303,24 +311,24 @@ int main(){
             testSLL();
             break;
         case 3:
-            cout << "\tDoubly Linked List! Coming Soon!!\n";
+            cout << "\tTesting the Doubly Linked List!!\n";
             testDLL();
             break;
         case 4:
-            cout << "\tCircular Linked List Coming Soon!!\n";
+            cout << "\tTesting the Circular Linked List!!\n";
             testCLL();
             break;
         case 5:
-            cout << "\tTesting the Stack\n";
+            cout << "\tTesting the Stack [Linked List]\n";
             testStack();
             break;
         case 6:
-            cout << "\tTesting the Queue\n";
-            testQueue();
+            cout << "\tTesting the Stack [Array-based List]\n";
+            testStackArr();
             break;
         case 7:
-            cout << "\tTesting the Stack - Array Implementation\n";
-            testStackArr();
+            cout << "\tTesting the Queue\n";
+            testQueue();
             break;
         default:
             cerr << "Invalid Choice!\n";
