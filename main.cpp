@@ -234,8 +234,33 @@ void testDLL(){
     cout << '\n';
     DLL.forwardTraversal();
 
-    cout << "\nSwap elements at index 3 and 5\n";
-    DLL.swap(3, 5);
+    cout << "\nSwap elements at index 0 and 1\n";
+    DLL.swap(0, 1);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 4 and 5\n";
+    DLL.swap(4, 5);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 2 and 3\n";
+    DLL.swap(2, 3);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 0 and 4\n";
+    DLL.swap(0, 4);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 1 and 3\n";
+    DLL.swap(1, 3);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 5 and 3\n";
+    DLL.swap(5, 3);
+    DLL.forwardTraversal();
+
+    cout << "\nSwap elements at index 0 and 5\n";
+    DLL.swap(0, 5);
+    DLL.forwardTraversal();
 
 
     cout << "\nForward Traversal\n";
@@ -303,7 +328,7 @@ int main(){
             testSLL();
             break;
         case 3:
-            cout << "\tDoubly Linked List! Coming Soon!!\n";
+            cout << "\tDoubly Linked List!\n";
             testDLL();
             break;
         case 4:
