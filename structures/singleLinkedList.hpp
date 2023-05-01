@@ -6,6 +6,7 @@ template <typename T>
 struct Node{
     T data;
     Node *next;
+    Node(T item) : data(item), next(nullptr) {}
 };
 
 // Single Linked List Implementation
@@ -26,8 +27,7 @@ public:
     Node<elementType>* getTail() const { return tail; }
     // Insert node at the beginning of the list
     void insertAtHead(elementType element){
-        Node<elementType>* newNode = new Node<elementType>();
-        newNode->data = element;
+        Node<elementType>* newNode = new Node<elementType>(element);
         if(isEmpty())
             tail = newNode;
         else
@@ -37,9 +37,7 @@ public:
     }
     // Insert node at the end of the list
     void insertAtTail(elementType element){
-        Node<elementType>* newNode = new Node<elementType>();
-        newNode->data = element;
-        newNode->next = nullptr;
+        Node<elementType>* newNode = new Node<elementType>(element);
         if(isEmpty())
             head = newNode;
         else
@@ -50,8 +48,7 @@ public:
     // Insert node at certain position
     void insertAt(elementType element, int index){
         if(index <= 0 or index > length) return;
-        Node<elementType>* newNode = new Node<elementType>();
-        newNode->data = element;
+        Node<elementType>* newNode = new Node<elementType>(element);
         if(isEmpty())
             head = tail = newNode;
         else if(index == 1){
