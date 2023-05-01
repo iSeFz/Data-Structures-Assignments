@@ -17,7 +17,7 @@ Here we will cooperate and help each others in order to finish all required task
 **2. Use these structures to solve the following problems:**
 
 1. Combine Nodes Between Zeros :white_check_mark:
-2. Merge K Sorted Linked Lists
+2. Merge K Sorted Linked Lists :white_check_mark:
 3. Convert the Infix Expression to Postfix Expression :white_check_mark:
 4. Longest Valid Parentheses :white_check_mark:
 5. Generate Binary Numbers from 1 to N :white_check_mark:
