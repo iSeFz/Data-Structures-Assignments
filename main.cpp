@@ -1,7 +1,8 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "student.cpp"
+#include "Student.hpp"
+#include "Structures/AVL.cpp"
 
 void readFile(ifstream& file, vector<Student>& students){
     int studentCount, count = 0;
@@ -32,7 +33,9 @@ void print(vector<Student> students){
     }
 }
 
-void mainMenu(int choice){
+
+
+void mainMenu(int choice, vector<Student>& students){
     cout << "Choose Data Structure:\n\t"
     << "1. BST\n\t2. AVL\n\t3. Min Heap\n\t4. Max Heap\n\t5. Exit";
     switch (choice) {
@@ -58,7 +61,7 @@ int main() {
     file.open("students.txt");
     readFile(file, students);
     while (choice != 5){
-        mainMenu(choice);
+        mainMenu(choice, students);
         cout << "\nEnter number of option: ";
         cin >> choice;
     }
