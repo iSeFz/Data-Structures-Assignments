@@ -10,6 +10,7 @@ private:
 
 public:
     Student() : name(""), id(0), gpa(0), dept("") {}
+    Student(string id) : id(stoi(id)) {}
     Student(string name, string gpa, string dept, string id)
     {
         this->name = name;
@@ -38,13 +39,6 @@ public:
         return dept;
     }
 
-    void print(){
-        cout << "Name: " << name << endl;
-        cout << "ID: " << id << endl;
-        cout << "GPA: " << gpa << endl;
-        cout << "Department: " << dept << endl;
-    }
-
     bool operator < (Student& another) const{
         return (this->id < another.id);
     }
@@ -66,14 +60,16 @@ public:
 };
 
 ostream& operator << (ostream& out,Student& s){
-    out << "[" << s.id << ", " << s.name << ", " << s.gpa << ", " << s.dept << "]";
+    out << "[" << s.id << ", " << s.name << ", " << s.gpa << ", " << s.dept << "]\n";
     return out;
 }
 istream& operator >> (istream& in, Student& s){
     cout << "Id: ";
     in >> s.id;
     cout << "Name: ";
-    in >> s.name;
+    in.clear();
+    in.ignore();
+    getline(in,s.name);
     cout << "GPA: ";
     in >> s.gpa;
     cout << "Department: ";

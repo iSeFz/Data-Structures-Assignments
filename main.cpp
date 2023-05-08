@@ -27,27 +27,40 @@ void readFile(ifstream& file, vector<Student>& students){
 
 }
 
-void print(vector<Student> students){
-    for (auto el : students){
-        el.print();
+void useAVL(vector<Student>& students){
+    AVL<Student>avl;
+    for (int i = 0; i < students.size(); ++i) {
+        avl.insert(students[i]);
     }
+    avl.menu();
 }
 
 
 
-void mainMenu(int choice, vector<Student>& students){
+
+void mainMenu(vector<Student>& students){
+    int choice;
     cout << "Choose Data Structure:\n\t"
-    << "1. BST\n\t2. AVL\n\t3. Min Heap\n\t4. Max Heap\n\t5. Exit";
-    switch (choice) {
-        case 1: // BST menu
-            break;
-        case 2: // AVL menu
-            break;
-        case 3: // Min heap
-            break;
-        case 4: // Max heap
-            break;
-        default: break;
+    << "1. BST\n\t2. AVL\n\t3. Min Heap\n\t4. Max Heap\n\t5. Exit\n";
+    cout << "\nEnter number of option: ";
+    cin >> choice;
+    while (choice != 5){
+        switch (choice) {
+            case 1: // BST menu
+                break;
+            case 2:
+                useAVL(students);
+                break;
+            case 3: // Min heap
+                break;
+            case 4: // Max heap
+                break;
+            default: break;
+        }
+        cout << "Choose Data Structure:\n\t"
+             << "1. BST\n\t2. AVL\n\t3. Min Heap\n\t4. Max Heap\n\t5. Exit\n";
+        cout << "\nEnter number of option: ";
+        cin >> choice;
     }
 }
 
@@ -56,14 +69,9 @@ void mainMenu(int choice, vector<Student>& students){
 
 int main() {
     vector<Student> students;
-    int choice = 0;
     ifstream file;
     file.open("students.txt");
     readFile(file, students);
-    while (choice != 5){
-        mainMenu(choice, students);
-        cout << "\nEnter number of option: ";
-        cin >> choice;
-    }
+    mainMenu(students);
     return 0;
 }
