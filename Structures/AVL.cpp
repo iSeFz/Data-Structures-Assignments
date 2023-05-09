@@ -263,58 +263,63 @@ public:
         cout << avlRoot->value;
         print(avlRoot->right);
     }
-    
-    // AVL menu
+
+    // AVL Tree User Menu
     void menu(){
-        cout << "Choose one of the following options\n\t"
-        << "1. Add student\n\t2. Remove student\n\t3. Search student\n\t4. Print All\n\t5. Return to main menu\n";
-        int choice;
-        cout << "Enter number of option: \n";
-        cin >> choice;
-        while (choice != 5) {
-            if (choice == 1) {
+        short choice;
+        while(true){
+            cout << "\n\tAVL Tree Menu\n"
+            << "1. Add new student\n"
+            << "2. Remove student by ID\n"
+            << "3. Search student by ID\n"
+            << "4. Print All Students\n"
+            << "5. Return to main menu\n"
+            << "Choose one of the above options (1-5) >> ";
+            choice = 0;
+            cin >> choice;
+            // Get student data from the user
+            if(choice == 1){
                 T stud;
                 cin >> stud;
                 if(insert(stud))
-                    cout << "The student is added\n";
+                    cout << "\n\tStudent Added Successfully!\n";
                 else
-                    cout << "This Id is already Used by: " << search(stud).second->value;
+                    cout << "\n\tThis ID is already used by ==> " << search(stud).second->value;
             }
-            else if (choice == 2) {
+            // Remove certain student using ID
+            else if(choice == 2){
                 string id;
-                cout << "Id: ";
+                cout << "Enter ID to remove >> ";
                 cin >> id;
                 AVLNode<T>* res = search(T(id)).second;
                 if(res != nullptr){
-                    T val = res->value;
-                    cout << "Student is found.\n";
+                    cout << "Removing Student...\n";
+                    cout << res->value;
                     remove(res->value);
-                    cout << val << "Student is deleted\n";
+                    cout << "\n\tStudent Deleted Successfully!\n";
                 }
-                else{
-                    cout << "Student is not found\n";
-                }
+                else
+                    cerr << "\n\tStudent NOT Found!\n";
             }
-            else if (choice == 3){
+            // Search for certain student using ID
+            else if(choice == 3){
                 string id;
-                cout << "Id: ";
+                cout << "Enter ID to search for >> ";
                 cin >> id;
                 AVLNode<T>* res = search(T(id)).second;
                 if(res != nullptr){
-                    cout << "Student is found.\n";
+                    cout << "Student is found!\n";
                     cout << res->value;
                 }
-                else {
-                    cout << "Student is not found\n";
-                }
+                else
+                    cerr << "\n\tStudent NOT Found!\n";
             }
-            else if(choice == 4){
-                print(root);
-            }
-            cout << "Choose one of the following options\n\t"
-            << "1. Add student\n\t2. Remove student\n\t3. Search student\n\t4. Print All\n\t5. Return to main menu\n";
-            cout << "Enter number of option:";
-            cin >> choice;
+            // Output all current students sorted by ID
+            else if(choice == 4)
+                this->print(this->root);
+            else if(choice == 5) break;
+            else
+                cerr << "\n\tINVALID INPUT!! Enter ONLY numbers from 1 to 5\n";
         }
     }
 
