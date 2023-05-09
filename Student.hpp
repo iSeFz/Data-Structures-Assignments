@@ -4,31 +4,31 @@ using namespace std;
 // Student Class
 class Student{
 private:
+    int id;
     string name;
-    string id;
-    string gpa;
+    float gpa;
     string dept;
 public:
     // Constructors
-    Student() : name(""), id("0"), gpa("0"), dept("") {}
-    Student(string id) : id(id) {}
-    Student(string name, string gpa, string dept, string id){
+    Student() : name(""), id(0), gpa(0.0), dept("") {}
+    Student(string id) : id(stoi(id)) {}
+    Student(string id, string name, string gpa, string dept){
+        this->id = stoi(id);
         this->name = name;
-        this->gpa = gpa;
+        this->gpa = stof(gpa);
         this->dept = dept;
-        this->id = id;
     }
 
     // Getter methods to get student data
-    string getId(){ return id; }
+    int getId(){ return id; }
     string getName(){ return name; }
-    string getGpa(){ return gpa; }
+    float getGpa(){ return gpa; }
     string getDept(){ return dept; }
 
     // Setter methods to set student data
-    void setId(string id){ this->id = id; }
+    void setId(string id){ this->id = stoi(id); }
     void setName(string name){ this->name = name; }
-    void setGpa(string gpa){ this->gpa = gpa; }
+    void setGpa(string gpa){ this->gpa = stof(gpa); }
     void setDept(string dept){ this->dept = dept; }
 
     // Overloading the comparison operators to compare students
@@ -64,7 +64,7 @@ istream& operator >> (istream& in, Student& s){
     cout << "Enter student Name >> ";
     in.clear();
     in.ignore();
-    getline(in,name);
+    getline(in, name);
     s.setName(name);
     cout << "Enter student GPA >> ";
     in.clear();
