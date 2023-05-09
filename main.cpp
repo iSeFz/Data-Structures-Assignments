@@ -6,22 +6,22 @@
 
 // Append student data from file into vector
 void readFile(ifstream& file, vector<Student>& students){
-    int studentCount, count = 0;
-    string line, data, name, dept, id, gpa;
+    int studentCount, lineCount = -1;
     file >> studentCount;
+    string line, data, id, name, gpa, dept;
     stringstream ss;
     file.ignore();
-    while (getline(file,line)){
-        count++;
-        if(count == 2)
+    while (getline(file, line)){
+        lineCount++;
+        if(lineCount == 2)
             name = line;
         else
             data += line + " ";
-        if(count == 4){
+        if(lineCount == 4){
             ss << data;
             ss >> id >> gpa >> dept;
-            students.push_back(Student(name, gpa, dept, id));
-            count = 0;
+            students.push_back(Student(id, name, gpa, dept));
+            lineCount = 0;
             data = "";
         }
     }
@@ -47,8 +47,7 @@ void useBST(vector<Student>& students){
 // Main function to test the whole program
 int main() {
     vector<Student> students;
-    ifstream file;
-    file.open("students.txt");
+    ifstream file("students.txt");
     readFile(file, students);
     // Output the main menu
     short choice;
