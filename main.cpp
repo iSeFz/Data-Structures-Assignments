@@ -3,6 +3,8 @@
 #include <vector>
 #include "Student.hpp"
 #include "Structures/AVL.cpp"
+#include "Structures/heap.cpp"
+
 
 void readFile(ifstream& file, vector<Student>& students){
     int studentCount, count = 0;
@@ -24,7 +26,6 @@ void readFile(ifstream& file, vector<Student>& students){
             data = "";
         }
     }
-
 }
 
 void print(vector<Student> students){
@@ -33,7 +34,13 @@ void print(vector<Student> students){
     }
 }
 
+void maxHeap(const vector<Student>& students){
+    MaxBinaryHeap maxBinaryHeap(students);
+    maxBinaryHeap.buildMaxHeap();
+    maxBinaryHeap.printMaxHeap();
 
+
+}
 
 void mainMenu(int choice, vector<Student>& students){
     cout << "Choose Data Structure:\n\t"
@@ -46,6 +53,7 @@ void mainMenu(int choice, vector<Student>& students){
         case 3: // Min heap
             break;
         case 4: // Max heap
+            maxHeap(students);
             break;
         default: break;
     }
