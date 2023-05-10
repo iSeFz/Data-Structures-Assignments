@@ -1,9 +1,9 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include "Structures/BST.cpp"
-#include "Structures/AVL.cpp"
-#include "Structures/heap.cpp"
+#include "BST.hpp"
+#include "AVL.hpp"
+#include "heap.hpp"
 
 // Append student data from file into vector
 void readFile(ifstream& file, vector<Student>& students){
