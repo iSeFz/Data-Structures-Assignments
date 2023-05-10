@@ -1,4 +1,7 @@
-#include "../Student.hpp"
+#ifndef _BST_HPP
+#define _BST_HPP
+
+#include "Student.hpp"
 #include <map>
 
 // Binary Search Tree class
@@ -121,3 +124,5 @@ public:
         }
     }
 };
+
+#endif

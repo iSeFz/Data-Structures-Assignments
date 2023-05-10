@@ -1,5 +1,8 @@
+#ifndef _HEAP_HPP
+#define _HEAP_HPP
+
 #include <vector>
-#include "../Student.hpp"
+#include "Student.hpp"
 
 class MaxBinaryHeap{
 private:
@@ -68,3 +71,5 @@ void MaxBinaryHeap::printSorted() {
         maxHeapify(0);
     }
 }
+
+#endif

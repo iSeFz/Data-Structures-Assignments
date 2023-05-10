@@ -1,3 +1,6 @@
+#ifndef _AVL_HPP
+#define _AVL_HPP
+
 #include <iostream>
 using namespace std;
 template <class T>
@@ -324,3 +327,5 @@ public:
     }
 
 };
+
+#endif
