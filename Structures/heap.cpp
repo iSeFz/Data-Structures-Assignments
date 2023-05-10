@@ -14,8 +14,9 @@ public:
     void buildMaxHeap();
     // corrects a single violation
     void maxHeapify(int index);
+    //restore heap invariant after insertion
     void siftUp(int index);
-    void printMaxHeap();
+    void printSorted();
 
 };
 
@@ -27,15 +28,8 @@ MaxBinaryHeap::MaxBinaryHeap(const vector<Student> &students) {
 
 void MaxBinaryHeap::insert(const Student &student) {
     heap.push_back(student);
-    int index = size-1;
-    int parent = (index-1)/2;
-    while (parent>=0){
-        if (heap[index].getGpa() > heap[parent].getGpa()){
-            swap(heap[index], heap[parent]);
-            index = parent;
-            parent = (parent-1)/2;
-        } else break;
-    }
+    size++;
+    siftUp(size-1);
 }
 
 void MaxBinaryHeap::buildMaxHeap() {
@@ -49,7 +43,7 @@ void MaxBinaryHeap::buildMaxHeap() {
 }
 
 void MaxBinaryHeap::maxHeapify(int index) {
-    int left = 2*index+1, right = 2*index+1, largest = index;
+    int left = 2*index+1, right = 2*index+2, largest = index;
 
     if (left<size && heap[left].getGpa() > heap[index].getGpa()){
         largest = left;
@@ -64,20 +58,24 @@ void MaxBinaryHeap::maxHeapify(int index) {
 }
 
 
-void MaxBinaryHeap::printMaxHeap() {
-    for (auto &student : heap){
-        cout << student.getId() << " - " << student.getName() << " - "
-        << student.getDept() << " - " << student.getGpa() << '\n';
-    }
-}
 
-// restore heap invariant after insertion
 void MaxBinaryHeap::siftUp(int index) {
     while (true){
         int parent = (index-1)/2;
-        if (heap[parent].getGpa()>=heap[index].getGpa())
+        if (index==0 || heap[parent].getGpa()>=heap[index].getGpa())
             break;
-        swap(heap[parent], heap[index]);
+        swap(heap[index], heap[parent]);
         index = parent;
     }
 }
+
+void MaxBinaryHeap::printSorted() {
+    while (size>1){
+        swap(heap[0], heap[size-1]);
+        cout << heap[size-1];
+        size--;
+        maxHeapify(0);
+    }
+}
+
+
