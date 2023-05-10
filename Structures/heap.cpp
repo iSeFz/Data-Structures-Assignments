@@ -1,6 +1,5 @@
-#include <iostream>
 #include <vector>
-#include <Student.hpp>
+#include "../Student.hpp"
 
 class MaxBinaryHeap{
 private:
@@ -17,7 +16,6 @@ public:
     //restore heap invariant after insertion
     void siftUp(int index);
     void printSorted();
-
 };
 
 MaxBinaryHeap::MaxBinaryHeap(const vector<Student> &students) {
@@ -35,29 +33,22 @@ void MaxBinaryHeap::insert(const Student &student) {
 void MaxBinaryHeap::buildMaxHeap() {
     // elements in this range [floor(size/2), size-1] are leaves
     // hence we need to only maxHeapify the other nodes that are not leaves
-
-    for (int index = size / 2 - 1; index >= 0; index--){
+    for (int index = size / 2 - 1; index >= 0; index--)
         maxHeapify(index);
-    }
-
 }
 
 void MaxBinaryHeap::maxHeapify(int index) {
     int left = 2*index+1, right = 2*index+2, largest = index;
 
-    if (left<size && heap[left].getGpa() > heap[index].getGpa()){
+    if (left<size && heap[left].getGpa() > heap[index].getGpa())
         largest = left;
-    }
-    if (right<size && heap[right].getGpa() > heap[largest].getGpa()){
+    if (right<size && heap[right].getGpa() > heap[largest].getGpa())
         largest = right;
-    }
     if (largest!=index){
         swap(heap[index], heap[largest]);
         maxHeapify(largest);
     }
 }
-
-
 
 void MaxBinaryHeap::siftUp(int index) {
     while (true){
@@ -77,5 +68,3 @@ void MaxBinaryHeap::printSorted() {
         maxHeapify(0);
     }
 }
-
-
