@@ -1,3 +1,6 @@
+#ifndef _STUDENT_HPP
+#define _STUDENT_HPP
+
 #include <iostream>
 using namespace std;
 
@@ -76,3 +79,5 @@ istream& operator >> (istream& in, Student& s){
     s.setDept(dept);
     return in;
 }
+
+#endif
