@@ -4,6 +4,7 @@
 #include "BST.hpp"
 #include "AVL.hpp"
 #include "MaxHeap.hpp"
+#include "MinHeap.hpp"
 
 // Append student data from file into vector
 void readFile(ifstream& file, vector<Student>& students){
@@ -68,6 +69,29 @@ void maxHeap(const vector<Student>& students){
     }
 }
 
+// Driver function for the min heap data structure
+void minHeap(const vector<Student>& students){
+    MinBinaryHeap minBinaryHeap(students);
+    while (true){
+        cout << "\n\tMin Heap Menu\n"
+             << "1. Add new student\n"
+             << "2. Print All Students (Sorted by GPA)\n"
+             << "3. Return to main menu\n"
+             << "Choose one of the above options (1-3) >> ";
+        int option;
+        cin >> option;
+        if (option == 1){
+            cout << "\n";
+            Student newStudent;
+            cin >> newStudent;
+            minBinaryHeap.insert(newStudent);
+            cout << "Student Added Successfully!\n";
+        } else if (option == 2){
+            minBinaryHeap.printSorted();
+        } else if (option == 3) break;
+        else cerr << "\n\tINVALID INPUT!! Enter ONLY numbers from 1 to 3\n";
+    }
+}
 // Main function to test the whole program
 int main() {
     vector<Student> students;
@@ -90,7 +114,7 @@ int main() {
         else if(choice == 2)
             useAVL(students);
         else if(choice == 3)
-            cout << "Coming Soon!!\n";
+            minHeap(students);
         else if(choice == 4)
             maxHeap(students);
         else if(choice == 5) break;
