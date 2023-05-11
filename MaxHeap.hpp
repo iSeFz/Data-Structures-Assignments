@@ -1,5 +1,5 @@
-#ifndef _HEAP_HPP
-#define _HEAP_HPP
+#ifndef _MAX_HEAP_HPP
+#define _MAX_HEAP_HPP
 
 #include <vector>
 #include "Student.hpp"
@@ -70,6 +70,9 @@ void MaxBinaryHeap::printSorted() {
         size--;
         maxHeapify(0);
     }
+    cout << heap[0];
+    size = (int) heap.size();
+    buildMaxHeap();
 }
 
 #endif

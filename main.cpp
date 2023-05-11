@@ -3,7 +3,7 @@
 #include <vector>
 #include "BST.hpp"
 #include "AVL.hpp"
-#include "heap.hpp"
+#include "MaxHeap.hpp"
 
 // Append student data from file into vector
 void readFile(ifstream& file, vector<Student>& students){
