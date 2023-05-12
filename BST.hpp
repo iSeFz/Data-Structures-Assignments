@@ -1,127 +1,162 @@
 #ifndef _BST_HPP
 #define _BST_HPP
 
-#include "Student.hpp"
 #include <map>
+#include <vector>
+#include "Student.hpp"
 
 // Binary Search Tree class
 class BST{
 private:
     // Node structure
     struct Node{
-        Student studInfo;
+        Student studentInfo;
         Node *left;
         Node *right;
-        Node(Student student) : studInfo(student), left(nullptr), right(nullptr) {}
+        Node(const Student &student) : studentInfo(student), left(nullptr), right(nullptr) {}
     };
     // Root node of the tree
     Node *root;
     // Map to count the number of students in each department
     map<string, int> deptCount;
 public:
-    // Constructor
-    BST() : root(nullptr) {}
-    // Check if the tree is empty
-    bool isEmpty() { return root == nullptr; }
+    // Constructor to initialize the tree with current students
+    BST(const vector<Student> &students) {
+        root = nullptr;
+        for(const Student &student : students)
+            addNewStudent(student);
+    }
     // Add a new student to the tree
-    Node* addNewStudent(Node* currentStudent, Student stud) {
-        // Create a new node with the given student id
-        Node* newNode = new Node(stud);
-        // If the tree is empty, add the new node as root
+    Node* addNewStudent(Node *currentStudent, const Student &student) {
+        // Base Case: If the tree is empty or it is a leaf node
+        // Create a new node and assign it with the given student id
         if(currentStudent == nullptr){
-            currentStudent = newNode;
-            deptCount[stud.getDept()]++;
+            currentStudent = new Node(student);
+            deptCount[currentStudent->studentInfo.getDept()]++;
         }
         // Move left if the id is less than current node id
-        else if(stud < currentStudent->studInfo)
-            currentStudent->left = addNewStudent(currentStudent->left, stud);
+        else if(student < currentStudent->studentInfo)
+            currentStudent->left = addNewStudent(currentStudent->left, student);
         // Otherwise move right
         else
-            currentStudent->right = addNewStudent(currentStudent->right, stud);
+            currentStudent->right = addNewStudent(currentStudent->right, student);
         return currentStudent;
     }
     // User function to save final tree into root
-    void addNewStudent(Student stud){ root = addNewStudent(root, stud); }
-    // TODO: Remove a student by ID
-    // Search for a student by ID
-    Node* searchByID(Node *currentStudent, int id){
+    void addNewStudent(const Student &student) { root = addNewStudent(root, student); }
+    // Get the maximum student ID in the left subtree
+    Node* getMaxID(Node *currentStudent){
+        // If the tree is empty, there is no max
+        if(currentStudent == nullptr) return nullptr;
+        // If there is no more nodes on the right
+        // Then the current student node has the maximum ID, return this node
+        else if(currentStudent->right == nullptr)
+            return currentStudent;
+        // Otherwise move to the right subtree till find the maximum ID
+        else return getMaxID(currentStudent->right);
+    }
+    // Remove certain student by ID
+    Node* removeStudent(Node *currentStudent, int id){
+        // If the tree is empty, nothing to delete
+        if(currentStudent == nullptr) return nullptr;
+        // If the student is in the left subtree
+        if(id < currentStudent->studentInfo.getId())
+            currentStudent->left = removeStudent(currentStudent->left, id);
+        // If the student is in the right subtree
+        else if(id > currentStudent->studentInfo.getId())
+            currentStudent->right = removeStudent(currentStudent->right, id);
+        // If the student ID to remove is at the current node
+        // Check for one of the following three states
+        else{
+            // If the current student node is a leaf node, remove it directly
+            if(currentStudent->left == nullptr and currentStudent->right == nullptr){
+                // Decrease number of students in the department from which the student is removed
+                deptCount[currentStudent->studentInfo.getDept()]--;
+                currentStudent = nullptr;
+            }
+            // If the current student node has only one child at the left subtree
+            // Transfer child's data to current node and delete the child
+            else if(currentStudent->left != nullptr and currentStudent->right == nullptr){
+                // Decrease number of students in the department from which the student is removed
+                deptCount[currentStudent->studentInfo.getDept()]--;
+                currentStudent->studentInfo = currentStudent->left->studentInfo;
+                delete currentStudent->left;
+                // Adjust the pointer of left to point to the subtree of the removed child
+                currentStudent->left = currentStudent->left->left;
+            }
+            // If the current student node has only one child at the right subtree
+            // Transfer child's data to current node and delete the child
+            else if(currentStudent->left == nullptr and currentStudent->right != nullptr){
+                // Decrease number of students in the department from which the student is removed
+                deptCount[currentStudent->studentInfo.getDept()]--;
+                currentStudent->studentInfo = currentStudent->right->studentInfo;
+                delete currentStudent->right;
+                // Adjust the pointer of right to point to the subtree of the removed child
+                currentStudent->right = currentStudent->right->right;
+            }
+            // If the current student node has two children, find the student node with the maximum ID in the left subtree
+            // Transfer its data to the current student node, then remove the student node with the maximum ID
+            else{
+                // Decrease number of students in the department from which the student is removed
+                deptCount[currentStudent->studentInfo.getDept()]--;
+                Node *maxInLeft = getMaxID(currentStudent->left);
+                currentStudent->studentInfo = maxInLeft->studentInfo;
+                currentStudent->left = removeStudent(currentStudent->left, maxInLeft->studentInfo.getId());
+            }
+        }
+        // Finally return the new tree after deleting the required student
+        return currentStudent;
+    }
+    // User function to output the removal results
+    void removeStudent(int id) {
+        if(searchByID(id)){
+            root = removeStudent(root, id);
+            cout << "Student Deleted Successfully!\n";
+        }
+    }
+    // Search for certain student by ID
+    Node* searchByID(Node *currentStudent, int id) const {
         // If the tree is empty, nothing to search for
         if(currentStudent == nullptr) return nullptr;
         // If the student is found return its node
-        if(id == currentStudent->studInfo.getId())
+        if(id == currentStudent->studentInfo.getId())
             return currentStudent;
         // If the given id is less than current id, move left
-        else if(id < currentStudent->studInfo.getId())
+        else if(id < currentStudent->studentInfo.getId())
             return searchByID(currentStudent->left, id);
         // Otherwise, move right
-        else
-            return searchByID(currentStudent->right, id);
+        else return searchByID(currentStudent->right, id);
     }
     // User function to output the search results
-    bool searchByID(int id){
-        Node *foundStudent = searchByID(this->root, id);
+    bool searchByID(int id) const {
+        Node *foundStudent = searchByID(root, id);
         // If the student is found, print its information
         if(foundStudent != nullptr){
             cout << "Student is found!\n";
-            cout << foundStudent->studInfo;
+            cout << foundStudent->studentInfo;
             return true;
         }
         cerr << "Student NOT found!\n";
         return false;
     }
-    // Print all students in order
-    void printAllStudents(Node *start) {
+    // Print students in order sorted by ID
+    void printStudents(Node *start) const {
         if(start == nullptr) return;
         // Inorder traversal [left-root-right]
-        printAllStudents(start->left);
-        cout << start->studInfo;
-        printAllStudents(start->right);
+        printStudents(start->left);
+        cout << start->studentInfo;
+        printStudents(start->right);
     }
-    // Print number of students in each department
-    void printDeptReport(){
-        cout << "\nStudents per department:\n";
-        for(auto dept : deptCount)
-            cout << dept.first << " " << dept.second << " students\n";
-    }
-    // Binary Search Tree User Menu
-    void menu(){
-        short choice;
-        while(true){
-            cout << "\n\tBinary Search Tree Menu\n"
-            << "1. Add new student\n"
-            << "2. Remove student by ID\n"
-            << "3. Search student by ID\n"
-            << "4. Print All Students\n"
-            << "5. Return to main menu\n"
-            << "Choose one of the above options (1-5) >> ";
-            choice = 0;
-            cin >> choice;
-            // Get student data from the user
-            if(choice == 1){
-                cout << "\n";
-                Student newStudent;
-                cin >> newStudent;
-                this->addNewStudent(newStudent);
-                cout << "Student Added Successfully!\n";
+    // Print all students & number of students in each department
+    void printAll() const {
+        if(root != nullptr){
+            printStudents(root);
+            cout << "\nStudents per department:\n";
+            for(auto &dept : deptCount){
+                if(dept.second > 0)
+                    cout << dept.first << " " << dept.second << " student(s)\n";
             }
-            else if(choice == 2)
-                cout << "Coming Soon!!\n";
-            // Search for certain student using ID
-            else if(choice == 3){
-                short id;
-                cout << "\nEnter ID to search for >> ";
-                cin >> id;
-                this->searchByID(id);
-            }
-            // Output all current students sorted by ID
-            else if(choice == 4){
-                this->printAllStudents(this->root);
-                this->printDeptReport();
-            }
-            else if(choice == 5) break;
-            else
-                cerr << "\n\tINVALID INPUT!! Enter ONLY numbers from 1 to 5\n";
-        }
+        } else cerr << "\n\tTree is EMPTY! Nothing to print!\n";
     }
 };
 
