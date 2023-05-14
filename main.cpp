@@ -49,8 +49,9 @@ void useBST(const vector<Student> &students){
             cout << "\n";
             Student newStudent;
             cin >> newStudent;
-            binaryTree.addNewStudent(newStudent);
-            cout << "Student Added Successfully!\n";
+            if(binaryTree.addNewStudent(newStudent))
+                cout << "\n\tStudent Added Successfully!\n";
+            else cerr << "\t\tCannot add new student with the same ID!\n";
         }
         // Remove certain student using ID
         else if(choice == 2){
@@ -146,7 +147,6 @@ int main() {
         << "4. Max Heap\n"
         << "5. Exit\n"
         << "Choose one of the above options (1-5) >> ";
-        choice = 0;
         cin >> choice;
         if(choice == 1)
             useBST(students);
