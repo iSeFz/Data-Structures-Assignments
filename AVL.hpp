@@ -2,6 +2,7 @@
 #define _AVL_HPP
 
 #include <iostream>
+#include <map>
 using namespace std;
 template <class T>
 class AVL {
@@ -15,6 +16,7 @@ private:
         AVLNode(T el): value(el), right(nullptr), left(nullptr) {}
     };
     AVLNode<T>* root;
+    map<string , int> deptCount;
 public:
     // Constructor
     AVL() : root(nullptr) {}
@@ -148,6 +150,7 @@ public:
         if(temp != nullptr) return false;
         // create new node
         AVLNode<T>* newNode = new AVLNode<T>(el);
+        deptCount[el.getDept()]++;
         // AVL tree is empty
         if(isEmpty()){
             root = newNode;
@@ -267,6 +270,14 @@ public:
         print(avlRoot->right);
     }
 
+    // Function to print Student per Department
+    void deptPrint(){
+        cout << "Student per Departments:\n";
+        for (auto pair: deptCount) {
+            cout << pair.first << " " <<pair.second << " Students\n";
+        }
+    }
+
     // AVL Tree User Menu
     void menu(){
         short choice;
@@ -318,8 +329,10 @@ public:
                     cerr << "\n\tStudent NOT Found!\n";
             }
             // Output all current students sorted by ID
-            else if(choice == 4)
+            else if(choice == 4) {
                 this->print(this->root);
+                this->deptPrint();
+            }
             else if(choice == 5) break;
             else
                 cerr << "\n\tINVALID INPUT!! Enter ONLY numbers from 1 to 5\n";
