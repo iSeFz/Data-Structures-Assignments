@@ -23,10 +23,10 @@ public:
     }
 
     // Getter methods to get student data
-    int getId(){ return id; }
-    string getName(){ return name; }
-    float getGpa(){ return gpa; }
-    string getDept(){ return dept; }
+    int getId() const { return id; }
+    string getName() const { return name; }
+    float getGpa() const { return gpa; }
+    string getDept() const { return dept; }
 
     // Setter methods to set student data
     void setId(string id){ this->id = stoi(id); }
@@ -35,16 +35,16 @@ public:
     void setDept(string dept){ this->dept = dept; }
 
     // Overloading the comparison operators to compare students
-    bool operator < (Student& another) const{
+    bool operator < (Student& another) const {
         return (this->id < another.id);
     }
-    bool operator > (Student& another) const{
+    bool operator > (Student& another) const {
         return (this->id > another.id);
     }
-    bool operator == (Student& another) const{
+    bool operator == (Student& another) const {
         return (this->id == another.id);
     }
-    bool operator != (Student& another) const{
+    bool operator != (Student& another) const {
         return (this->id != another.id);
     }
     // Friend functions to overload the extraction and insertion operators
