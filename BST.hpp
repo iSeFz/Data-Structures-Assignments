@@ -43,7 +43,18 @@ public:
         return currentStudent;
     }
     // User function to save final tree into root
-    void addNewStudent(const Student &student) { root = addNewStudent(root, student); }
+    bool addNewStudent(const Student &student) {
+        // Check for duplicate student before adding
+        Node *foundStudent = searchByID(root, student.getId());
+        // If there is no duplicate, add the student safely
+        if(foundStudent == nullptr){
+            root = addNewStudent(root, student);
+            return true;
+        }
+        // Otherwise refuse to add the student
+        cerr << "\n\tThis ID is already registered as ==> " << foundStudent->studentInfo;
+        return false;
+    }
     // Get the maximum student ID in the left subtree
     Node* getMaxID(Node *currentStudent){
         // If the tree is empty, there is no max
